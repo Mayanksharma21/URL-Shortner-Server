@@ -8,6 +8,16 @@ const PORT = process.env.PORT || 8001;
 
 const app = express();
 
+// * Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// * Import Routes
+import urlRoutes from "./routes/url.route.js";
+
+// * Routes
+app.use("/api/v1", urlRoutes);
+
 connectDB()
   .then(
     app.listen(PORT, () => {
