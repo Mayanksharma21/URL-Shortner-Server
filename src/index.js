@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./db/index.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -9,6 +10,12 @@ const PORT = process.env.PORT || 8001;
 const app = express();
 
 // * Middlewares
+app.use(
+  cors({
+    origin: "*", // * for all domains
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
